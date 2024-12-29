@@ -1,0 +1,145 @@
+ 
+SET NAMES utf8mb4;
+SET FOREIGN_KEY_CHECKS = 0;
+
+-- ----------------------------
+-- Table structure for actcampus_activity
+-- ----------------------------
+DROP TABLE IF EXISTS `actcampus_activity`;
+CREATE TABLE `actcampus_activity`  (
+  `ACTIVITY_ID` int NOT NULL AUTO_INCREMENT,
+  `ACTIVITY_TITLE` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `ACTIVITY_CATE_ID` int NOT NULL DEFAULT 0,
+  `ACTIVITY_CATE_NAME` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `ACTIVITY_STATUS` int NOT NULL DEFAULT 1,
+  `ACTIVITY_START` bigint NOT NULL DEFAULT 0,
+  `ACTIVITY_END` bigint NOT NULL DEFAULT 0,
+  `ACTIVITY_STOP` bigint NOT NULL DEFAULT 0,
+  `ACTIVITY_ADDRESS` text CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL,
+  `ACTIVITY_ADDRESS_GEO` text CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL,
+  `ACTIVITY_ORDER` int NOT NULL DEFAULT 9999,
+  `ACTIVITY_VOUCH` int NOT NULL DEFAULT 0,
+  `ACTIVITY_VIEW_CNT` int NOT NULL DEFAULT 0,
+  `ACTIVITY_JOIN_CNT` int NOT NULL DEFAULT 0,
+  `ACTIVITY_MAX_CNT` int NOT NULL DEFAULT 0,
+  `ACTIVITY_FORMS` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `ACTIVITY_OBJ` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `ADD_TIME` bigint NOT NULL DEFAULT 0,
+  `EDIT_TIME` bigint NOT NULL DEFAULT 0,
+  PRIMARY KEY (`ACTIVITY_ID`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 44 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = DYNAMIC;
+
+
+
+-- ----------------------------
+-- Table structure for actcampus_activity_join
+-- ----------------------------
+DROP TABLE IF EXISTS `actcampus_activity_join`;
+CREATE TABLE `actcampus_activity_join`  (
+  `ACTIVITY_JOIN_ID` int NOT NULL AUTO_INCREMENT,
+  `ACTIVITY_JOIN_USER_ID` int NOT NULL DEFAULT 0,
+  `ACTIVITY_JOIN_ACTIVITY_ID` int NOT NULL DEFAULT 0,
+  `ACTIVITY_JOIN_CODE` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `ACTIVITY_JOIN_IS_CHECK` int NOT NULL DEFAULT 0,
+  `ACTIVITY_JOIN_CHECK_TIME` bigint NOT NULL DEFAULT 0,
+  `ACTIVITY_JOIN_FORMS` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `ACTIVITY_JOIN_OBJ` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `ACTIVITY_JOIN_STATUS` int NOT NULL DEFAULT 0,
+  `ADD_TIME` bigint NOT NULL DEFAULT 0,
+  `EDIT_TIME` bigint NOT NULL DEFAULT 0,
+  PRIMARY KEY (`ACTIVITY_JOIN_ID`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 10963 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = DYNAMIC;
+
+-- ----------------------------
+-- Table structure for actcampus_admin
+-- ----------------------------
+DROP TABLE IF EXISTS `actcampus_admin`;
+CREATE TABLE `actcampus_admin`  (
+  `ADMIN_ID` int NOT NULL AUTO_INCREMENT,
+  `ADMIN_NAME` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `ADMIN_PASSWORD` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `ADMIN_DESC` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `ADMIN_PHONE` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `ADMIN_LOGIN_CNT` int NOT NULL DEFAULT 0,
+  `ADMIN_TYPE` int NOT NULL DEFAULT 0,
+  `ADMIN_STATUS` int NOT NULL DEFAULT 1,
+  `ADMIN_LOGIN_TIME` bigint NOT NULL DEFAULT 0,
+  `ADD_TIME` bigint NOT NULL DEFAULT 0,
+  `EDIT_TIME` bigint NOT NULL DEFAULT 0,
+  PRIMARY KEY (`ADMIN_ID`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 18 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = DYNAMIC;
+
+INSERT INTO `actcampus_admin` VALUES (1, 'admin', 'e10adc3949ba59abbe56e057f20f883e', 'admin', NULL, 1, 1, 1, 1735302901541, 0, 1734786380484);
+
+-- ----------------------------
+-- Table structure for actcampus_fav
+-- ----------------------------
+DROP TABLE IF EXISTS `actcampus_fav`;
+CREATE TABLE `actcampus_fav`  (
+  `FAV_ID` int NOT NULL AUTO_INCREMENT,
+  `FAV_USER_ID` int NOT NULL DEFAULT 0,
+  `FAV_TITLE` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `FAV_TYPE` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `FAV_OID` int NOT NULL DEFAULT 0,
+  `FAV_PATH` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `ADD_TIME` bigint NOT NULL DEFAULT 0,
+  `EDIT_TIME` bigint NOT NULL DEFAULT 0,
+  PRIMARY KEY (`FAV_ID`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 28 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = DYNAMIC;
+
+-- ----------------------------
+-- Table structure for actcampus_news
+-- ----------------------------
+DROP TABLE IF EXISTS `actcampus_news`;
+CREATE TABLE `actcampus_news`  (
+  `NEWS_ID` int NOT NULL AUTO_INCREMENT,
+  `NEWS_TITLE` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `NEWS_CATE_ID` int NOT NULL DEFAULT 0,
+  `NEWS_CATE_NAME` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `NEWS_STATUS` int NOT NULL DEFAULT 1,
+  `NEWS_ORDER` int NOT NULL DEFAULT 9999,
+  `NEWS_VOUCH` int NOT NULL DEFAULT 0,
+  `NEWS_CONTENT` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL,
+  `NEWS_VIEW_CNT` int NOT NULL DEFAULT 0,
+  `NEWS_PIC` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `NEWS_OBJ` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL,
+  `NEWS_FORMS` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL,
+  `ADD_TIME` bigint NOT NULL DEFAULT 0,
+  `EDIT_TIME` bigint NOT NULL DEFAULT 0,
+  PRIMARY KEY (`NEWS_ID`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 73 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = DYNAMIC;
+
+-- ----------------------------
+-- Table structure for actcampus_setup
+-- ----------------------------
+DROP TABLE IF EXISTS `actcampus_setup`;
+CREATE TABLE `actcampus_setup`  (
+  `SETUP_ID` int NOT NULL AUTO_INCREMENT,
+  `SETUP_TYPE` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `SETUP_KEY` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `SETUP_VALUE` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `ADD_TIME` bigint NOT NULL DEFAULT 0,
+  `EDIT_TIME` bigint NOT NULL DEFAULT 0,
+  PRIMARY KEY (`SETUP_ID`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 8 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = DYNAMIC;
+
+-- ----------------------------
+-- Table structure for actcampus_user
+-- ----------------------------
+DROP TABLE IF EXISTS `actcampus_user`;
+CREATE TABLE `actcampus_user`  (
+  `USER_ID` int NOT NULL AUTO_INCREMENT,
+  `USER_NAME` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `USER_ACCOUNT` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `USER_STATUS` int NOT NULL DEFAULT 1,
+  `USER_PASSWORD` varchar(32) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `USER_LOGIN_TIME` bigint NOT NULL DEFAULT 0,
+  `USER_LOGIN_CNT` int NOT NULL DEFAULT 0,
+  `USER_OBJ` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL,
+  `USER_FORMS` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL,
+  `ADD_TIME` bigint NOT NULL DEFAULT 0,
+  `EDIT_TIME` bigint NOT NULL DEFAULT 0,
+  PRIMARY KEY (`USER_ID`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 215 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = DYNAMIC;
+
+SET FOREIGN_KEY_CHECKS = 1;
