@@ -1,0 +1,74 @@
+<view class="main">
+	<view class="up">
+		<image mode="widthFix" src="../../../images/home.jpg" />
+	</view>
+	<view class="down">
+		<view class="menu shadow-project">
+			<view wx:for="{{newsCateList}}" wx:key="key" bindtap="url" data-url="../../news/cate1/news_cate1?id={{item.id}}" class="item">
+				<view class="item-inner">
+					<view class="img">
+						<image src="../../../images/home/n{{item.id}}.png" />
+					</view>
+					<view class="title">{{item.title}}</view>
+				</view>
+			</view>
+
+			<view wx:for="{{activityCateList}}" wx:key="key" bindtap="url" data-url="../../activity/index/activity_index?id={{item.id}}" class="item">
+				<view class="item-inner">
+					<view class="img">
+						<image src="../../../images/home/a{{item.id}}.png" />
+					</view>
+					<view class="title">{{item.title}}</view>
+				</view>
+			</view>
+
+		</view>
+
+		<view class="vouch-box shadow-project">
+			<view class="title">
+				<view class="mark"></view>
+				<view class="txt">热门活动</view>
+			</view>
+			<view wx:if="{{!activityList}}" class="margin-top load loading text-l load-project"></view>
+			<view wx:if="{{activityList.length==0}}" class="text-s padding-s">暂无记录~</view>
+			<view class="list">
+				<view class="item" wx:for="{{activityList}}" wx:key="k" bind:tap="url" data-url="../../activity/detail/activity_detail?id={{item.activityId}}">
+					<view class="left">
+						<view class="line content-cut-two">{{item.activityTitle}}</view>
+						<view class="bottom">#{{item.activityCateName}} <text class="margin-left-xs">{{item.activityJoinCnt}}人报名</text></view>
+					</view>
+					<view class="right">
+						<image mode="aspectFill" lazy-load="{{true}}" class="loading" src="{{item.activityObj.cover[0]}}"></image>
+					</view>
+				</view>
+			</view>
+		</view>
+
+		<view class="vouch-box shadow-project">
+			<view class="title">
+				<view class="mark"></view>
+				<view class="txt">推荐</view>
+			</view>
+			<view wx:if="{{!newsList}}" class="margin-top load loading text-l load-project"></view>
+			<view wx:if="{{newsList.length==0}}" class="text-s padding-s">暂无记录~</view>
+			<view class="list">
+				<view class="item" wx:for="{{newsList}}" wx:key="k" bind:tap="url" data-url="../../news/detail/news_detail?id={{item.newsId}}">
+					<view class="left">
+						<view class="line content-cut-two">{{item.newsTitle}}</view>
+						<view class="bottom">#{{item.newsCateName}} <text class="margin-left-xs">{{item.addTime}}</text></view>
+					</view>
+					<view class="right">
+						<image mode="aspectFill" lazy-load="{{true}}" class="loading" src="{{item.newsObj.cover[0]}}"></image>
+					</view>
+				</view>
+			</view>
+		</view>
+
+	</view>
+	<view style="height: 100rpx;"></view>
+</view>
+
+<block wx:if="{{skin.IS_SUB}}">
+	<import src="../../tpls/menu_tpl.wxml" />
+	<template is="menuTpl" data="{{curMenu:'default_index',returnHome:false}}" />
+</block>
